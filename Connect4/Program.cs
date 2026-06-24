@@ -1,9 +1,16 @@
-﻿namespace Connect4;
+﻿using System;
 
-class Program
+namespace Connect4
 {
-    static void Main(string[] args)
+    class Program
     {
-        Console.WriteLine("Hello, World!");
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Connect Four");
+            Console.WriteLine("------------");
+
+            Board board = new Board();
+            board.PrintBoard();
+        }
     }
 }
