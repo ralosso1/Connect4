@@ -8,12 +8,24 @@ namespace Connect4
 
         public Board()
         {
-            //these are the  spaces for the connect 4
             for (int i = 0; i < 6; i++)
             {
                 for (int j = 0; j < 7; j++)
                 {
                     grid[i, j] = '.';
+                }
+            }
+        }
+
+        public void DropDisc(int col, char symbol)
+        {
+            // put disc in the column
+            for (int i = 0; i < 6; i++)
+            {
+                if (grid[i, col] == '.')
+                {
+                    grid[i, col] = symbol;
+                    break;
                 }
             }
         }
@@ -28,6 +40,7 @@ namespace Connect4
                 }
                 Console.WriteLine();
             }
+            Console.WriteLine("1 2 3 4 5 6 7");
         }
     }
 }
