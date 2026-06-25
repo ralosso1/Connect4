@@ -1,6 +1,6 @@
 namespace Connect4
 {
-    class Player
+    abstract class Player
     {
         public string Name;
         public char Symbol;
@@ -10,5 +10,7 @@ namespace Connect4
             Name = name;
             Symbol = symbol;
         }
+
+        public abstract int GetMove();
     }
 }

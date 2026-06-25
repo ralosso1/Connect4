@@ -9,23 +9,33 @@ namespace Connect4
             Console.WriteLine("Connect Four");
             Console.WriteLine("------------");
 
-            Player p1 = new Player("Player 1", 'X');
-            Player p2 = new Player("Player 2", 'o');
+            HumanPlayer p1 = new HumanPlayer("Player 1", 'X');
+            HumanPlayer p2 = new HumanPlayer("Player 2", 'O');
 
             Board board = new Board();
 
-            //this is where the game is going to loop
             Player current = p1;
-            while (true)
+            bool gameOver = false;
+//Game loops
+            while (!gameOver)
             {
                 board.PrintBoard();
-                Console.Write(current.Name + " (" + current.Symbol + "), choose a column (1-7): ");
-                string input = Console.ReadLine();
-                int col = int.Parse(input);
+                int col = current.GetMove();
 
-                board.DropDisc(col, current.Symbol);
+                bool placed = board.DropDisc(col, current.Symbol);
+                if (!placed)
+                {
+                    Console.WriteLine("Collum is full, choose another collum.");
+                    continue;
+                }
 
-                //switching the player
+                if (board.CheckWin(current.Symbol))
+                {
+                    board.PrintBoard();
+                    Console.WriteLine(current.Name + " wins!");
+                    gameOver = true;
+                }
+//switching the player
                 if (current == p1)
                     current = p2;
                 else
