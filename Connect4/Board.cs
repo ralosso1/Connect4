@@ -5,7 +5,7 @@ namespace Connect4
     class Board
     {
         private char[,] grid = new char[6, 7];
-    //game loops 
+
         public Board()
         {
             for (int i = 0; i < 6; i++)
@@ -21,7 +21,7 @@ namespace Connect4
         {
             if (col < 0 || col > 6)
                 return false;
-//drop disc to lowest empty spot
+
             for (int i = 5; i >= 0; i--)
             {
                 if (grid[i, col] == '.')
@@ -33,20 +33,58 @@ namespace Connect4
             return false;
         }
 
+        public bool IsFull()
+        {
+            //if top row has no empty space, board is full
+            for (int j = 0; j < 7; j++)
+            {
+                if (grid[0, j] == '.')
+                    return false;
+            }
+            return true;
+        }
+
         public bool CheckWin(char symbol)
         {
-            //checking th horizontal 
+            //horizontal
             for (int i = 0; i < 6; i++)
             {
                 for (int j = 0; j < 4; j++)
                 {
                     if (grid[i, j] == symbol && grid[i, j + 1] == symbol
-                                             && grid[i, j + 2] == symbol && grid[i, j + 3] == symbol)
+                        && grid[i, j + 2] == symbol && grid[i, j + 3] == symbol)
                     {
                         return true;
                     }
                 }
             }
+
+            //vertical
+            for (int j = 0; j < 7; j++)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    if (grid[i, j] == symbol && grid[i + 1, j] == symbol
+                        && grid[i + 2, j] == symbol && grid[i + 3, j] == symbol)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            //diagonal
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    if (grid[i, j] == symbol && grid[i + 1, j + 1] == symbol
+                        && grid[i + 2, j + 2] == symbol && grid[i + 3, j + 3] == symbol)
+                    {
+                        return true;
+                    }
+                }
+            }
+
             return false;
         }
 
