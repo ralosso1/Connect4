@@ -2,6 +2,7 @@ using System;
 
 namespace Connect4
 {
+    //moves come from keyboard input
     class HumanPlayer : Player
     {
         public HumanPlayer(string name, char symbol) : base(name, symbol)
@@ -12,17 +13,14 @@ namespace Connect4
         {
             while (true)
             {
-                Console.Write(Name + " (" + Symbol + "), pick a collumn (1-7): ");
+                Console.Write(Name + " (" + Symbol + "), pick a column (1-7): ");
                 string input = Console.ReadLine();
                 int col;
-                if (int.TryParse(input, out col))
+                if (int.TryParse(input, out col) && col >= 1 && col <= 7)
                 {
-                    if (col >= 1 && col <= 7)
-                    {
-                        return col - 1;
-                    }
+                    return col - 1;
                 }
-                Console.WriteLine("only enter a number from 1 to 7.");
+                Console.WriteLine("Choose a number between 1 to 7.");
             }
         }
     }

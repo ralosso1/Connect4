@@ -1,9 +1,10 @@
 namespace Connect4
 {
+    // Making this abstract 
     abstract class Player
     {
-        public string Name;
-        public char Symbol;
+        public string Name { get; private set; }
+        public char Symbol { get; private set; }
 
         public Player(string name, char symbol)
         {
