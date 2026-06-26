@@ -2,6 +2,7 @@ using System;
 
 namespace Connect4
 {
+    //start screen, game loop, restart
     class GameController
     {
         private Board board;
@@ -21,14 +22,15 @@ namespace Connect4
                 StartScreen();
                 PlayGame();
 
-                Console.Write("Do you want to play again (y/n): ");
+                Console.Write("Play again? (y/n): ");
                 string answer = Console.ReadLine();
-                if (answer != "y")
+                if (answer == null || answer.Trim().ToLower() != "y")
                 {
                     keepPlaying = false;
                 }
             }
 
+            Console.WriteLine("Thanks for playing!");
         }
 
         private void StartScreen()
@@ -57,7 +59,7 @@ namespace Connect4
 
                 if (!placed)
                 {
-                    Console.WriteLine("Try again");
+                    Console.WriteLine("That column is full. Try again.");
                     continue;
                 }
 
@@ -70,7 +72,7 @@ namespace Connect4
                 else if (board.IsFull())
                 {
                     board.PrintBoard();
-                    Console.WriteLine("the game has been draw!");
+                    Console.WriteLine("It's a draw!");
                     gameOver = true;
                 }
 
